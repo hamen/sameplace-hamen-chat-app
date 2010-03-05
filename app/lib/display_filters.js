@@ -143,6 +143,8 @@ function processEmoticons(xmlMessageBody) {
         '(clown)':	 'clown',
         ':o)':	 'clown',
         '(confused)':	 'confused',
+        '(confused2)':	 'confused2',
+        ':-/':	 'confused2',
         '(finger)':	 'finger',
         '(fuck)':	 'finger',
 	'(v)':	 'V',
