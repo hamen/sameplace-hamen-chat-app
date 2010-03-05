@@ -1,0 +1,618 @@
+/*
+ * Copyright 2006-2007 by Massimiliano Mirra
+ * 
+ * This file is part of SamePlace.
+ * 
+ * SamePlace is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation; either version 3 of the License, or (at your
+ * option) any later version.
+ * 
+ * SamePlace is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * 
+ * The interactive user interfaces in modified source and object code
+ * versions of this program must display Appropriate Legal Notices, as
+ * required under Section 5 of the GNU General Public License version 3.
+ *
+ * In accordance with Section 7(b) of the GNU General Public License
+ * version 3, modified versions must display the "Powered by SamePlace"
+ * logo to users in a legible manner and the GPLv3 text must be made
+ * available to them.
+ * 
+ * Author: Massimiliano Mirra, <bard [at] hyperstruct [dot] net>
+ *  
+ */
+
+
+/* GENERAL */
+
+body {
+    background: white;
+    font-family: Verdana, sans-serif;
+    overflow: hidden;
+    font-size: 80%;
+}
+
+body.fonts-smaller {
+    font-size: 65%;
+}
+
+body.fonts-normal {
+}
+
+body.fonts-larger {
+    font-size: 110%;
+}
+
+a {
+    color: darkblue;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+a:hover {
+    color: blue;
+}
+
+
+/* CHAT INPUT */
+
+#chat-input {
+    position: fixed;
+    height: 36px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 4px;
+    background-color: #f0f0f0;
+    border-top: 1px solid #c8c8c8;
+    border-bottom: 1px solid lightgray;
+    font-size: 10pt;
+    font-family: sans-serif;
+    z-index: 10;
+}
+
+#chat-input > iframe {
+    border-width: 0;
+    height: 100%;
+    width: 100%;
+}
+
+/* MENU BAR */
+
+.menu-bar {
+    left: 0;
+    right: 0;
+    position: fixed;
+    background: #eee;
+    height: 20px;
+}
+
+.menu-bar.lower {
+    border-bottom: 1px solid #dedede;
+    bottom: 46px;
+}
+
+#lower-menus {
+    background: url('../images/menu_bar_lower_bg_1x21.png') repeat-x;
+}
+
+/* MENU */
+
+.menu {
+    position: absolute;
+    height: 14px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 10px;
+    background: #C4C4FF;
+    opacity: 0.6;
+    width: 40px;
+}
+
+.menu.lower {
+    bottom: -2px;
+    -moz-border-radius-topright: 12px;
+    -moz-border-radius-topleft: 12px;
+}
+
+.menu.upper {
+    top: 0;
+    -moz-border-radius-bottomright: 12px;
+    -moz-border-radius-bottomleft: 12px;
+}
+
+.menu > .header {
+    text-align: center;
+    display: block;
+}
+
+.menu > ul {
+    display: none;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.menu > .menu-content {
+    display: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu:hover {
+    opacity: 0.9;
+    width: auto;
+    height: auto;
+}
+
+.menu:hover > ul {
+    display: block;
+}
+
+.menu:hover > .menu-content {
+    display: block;
+}
+
+.menu:hover > .header {
+    display: none;
+}
+
+
+/* POPUP - COMMON */
+
+.menu:hover {
+    font-size: 14px;
+}
+
+.menu > ul > li.command {
+    display: none;
+    cursor: pointer;
+    text-decoration: none;
+    padding: 0 .2em;
+    color: black;
+    border: 1px solid transparent;
+}
+
+.menu:hover > ul > li.command {
+    display: inline;
+}
+
+.menu > ul > li.command:hover {
+    background-color: #a4a4df;
+    border: 1px solid blue;
+}
+
+
+/* POPUP - FONT SIZE */
+
+#font-size.menu {
+    left: 80px;
+}
+
+
+/* POPUP - STYLES */
+
+#styles.menu {
+    left: 10px;
+}
+
+#styles #bold {
+    font-weight: bold;
+}
+
+#styles #italic {
+    font-style: italic;
+}
+
+#styles #underline {
+    text-decoration: underline;
+}
+
+
+/* NOSCRIPT NOTICE */
+
+#noscript-notice {
+    position: absolute;
+    background: gray;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    -moz-border-radius: 10px;
+    opacity: 0.7;
+    z-index: 1000;
+    padding: 1em;
+}
+
+#noscript-notice-header {
+    text-align: center;
+    color: white;
+    font-size: 200%;
+    margin-top: 0.5em;
+}
+
+#noscript-notice-description {
+    color: white;
+    margin-top: 1em;
+    font-size: 135%;
+    text-align: center;
+}
+
+/* CHAT AREA */
+
+#chat-output {
+    background: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 51px;
+    padding-right: 5px;
+    padding-left: 5px;
+    margin-bottom: 16px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+ul#messages {  
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* MESSAGE - GENERAL */
+
+.message {
+    margin-bottom: 0.25em;
+    margin-top: 1.0em;
+    line-height: 120%;
+    clear: both;
+}
+
+.message.user {
+
+}
+
+.message.contact {
+
+}
+
+.message.user + .message.user,
+.message.contact + .message.contact {
+    border: none;
+    margin-top: 0.25em;
+}
+
+
+/* MESSAGE - SENDER */
+
+.message > .sender {
+    font-weight: bold;
+    margin-right: 0.5em;
+    font-size: smaller;
+    display: block;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+}
+
+.message.user > .sender {
+    color: #0c5588;
+    border-bottom: 1px dotted #d1d5d8;
+}
+
+.message.contact > .sender {
+    text-align: right;
+    color: #9e0909;
+    border-bottom: 1px dotted #d8c8c8;
+}
+
+.message > .sender:after,
+.message.user > .sender:after {
+
+}
+
+.message.contact > .sender:after {
+
+}
+
+.message.user + .message.user > .sender,
+.message.contact + .message.contact > .sender {
+    display: none;
+}
+
+#chat-output.groupchat .message.chat .sender:before {
+    content: "[";
+}
+
+#chat-output.groupchat .message.chat .sender:after {
+    content: "]";
+}
+
+
+
+/* MESSAGE - TIME */
+
+.message > .time {
+    position: fixed;
+    display: none;
+    z-index: 100;
+    top: 0;
+    right: 18px;
+    text-align: center;
+    background: #C4C4FF;
+    padding: 0.2em;
+    padding-left: 1em;
+    padding-right: 1em;
+    font-size: smaller;
+    opacity: 0.92;
+    -moz-border-radius-bottomleft: 8px;
+    -moz-border-radius-bottomright: 8px;
+}
+
+/* MESSAGE - CONTENT */
+
+.message > .content {
+    display: block;
+}
+
+.message > .content,
+.message.user > .content {
+    margin-left: 1em;
+}
+
+.message.contact > .content {
+    margin-right: 1em;
+}
+
+
+/* EVENTS */
+
+.join, .leave, .error {
+    font-style: italic;
+}
+
+.join:before {
+    content: "» ";
+}
+.leave:before {
+    content: "« ";
+}
+.error:before {
+    content: "! ";
+    font-weight: bold;
+}
+
+/* IMAGES */
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+img.emoticon {
+    margin: 0 0;
+    padding: 0 0;
+    max-width: 32px;
+    vertical-align: text-bottom;
+}
+
+body.icons-on .smiley {
+    background-position: center bottom;
+    display: -moz-inline-box;
+    vertical-align: bottom;
+    height: 32px;
+    width: 32px;
+    max-width: 32px;
+}
+body.icons-on .smiley-angel      { background: url(../emoticons/angel.png); }
+body.icons-on .smiley-crying     { background: url(../emoticons/crying.png); }
+body.icons-on .smiley-devil-grin { background: url(../emoticons/devil-grin.png); }
+body.icons-on .smiley-glasses    { background: url(../emoticons/glasses.png); }
+body.icons-on .smiley-kiss       { background: url(../emoticons/kiss.png); }
+body.icons-on .smiley-monkey     { background: url(../emoticons/monkey.png); }
+body.icons-on .smiley-plain      { background: url(../emoticons/plain.png); }
+body.icons-on .smiley-sad        { background: url(../emoticons/sad.png); }
+body.icons-on .smiley-smile-big  { background: url(../emoticons/smile-big.png); }
+body.icons-on .smiley-smile      { background: url(../emoticons/smile.png); }
+body.icons-on .smiley-grin       { background: url(../emoticons/grin.png); }
+body.icons-on .smiley-surprise   { background: url(../emoticons/surprise.png); }
+body.icons-on .smiley-wink       { background: url(../emoticons/wink.png); }
+body.icons-on .smiley-heart      { background: url(../emoticons/heart.png); }
+body.icons-on .smiley-cool       { background: url(../emoticons/cool.png); }
+body.icons-on .smiley-finger     { background: url(../emoticons/finger.png); background-repeat:no-repeat; background-position:bottom left; }
+body.icons-on .smiley-V          { background: url(../emoticons/V.png); background-repeat:no-repeat; background-position:bottom left; }
+body.icons-on .smiley-drop       { background: url(../emoticons/drop.png); background-repeat:no-repeat; background-position:bottom left; }
+body.icons-on .smiley-gulp       { background: url(../emoticons/gulp.png); background-repeat:no-repeat; background-position:bottom left; }
+body.icons-on .smiley-oll        { background: url(../emoticons/oll.png); background-repeat:no-repeat; background-position:bottom left; }
+body.icons-on .smiley-panic      { background: url(../emoticons/panic.png); background-repeat:no-repeat; background-position:bottom left; }
+body.icons-on .smiley-shit       { background: url(../emoticons/shit.png); background-repeat:no-repeat; background-position:bottom left; }
+body.icons-on .smiley-vomit      { background: url(../emoticons/vomit.png); background-repeat:no-repeat; background-position:bottom left; }
+body.icons-on .smiley-zzz        { background: url(../emoticons/zzz.png); background-repeat:no-repeat; background-position:bottom left; }
+body.icons-on .smiley-slobber    { background: url(../emoticons/slobber.png); background-repeat:no-repeat; background-position:bottom left;}
+
+/* SOCKET */
+
+#socket {
+    z-index: 1000;
+    position: fixed;
+    top: 97%;
+    right: 10px;
+    height: 40%;
+    font-family: monospace, mono;
+    font-size: smaller;
+    background: #D4D4FF;
+    padding-left: 1em;
+    padding-right: 1em;
+    opacity: 0.65;
+    -moz-border-radius-topleft: 12px;
+    -moz-border-radius-topright: 12px;
+}
+
+#socket:hover {
+    font-weight: bold;
+    opacity: 0.95;
+    top: auto;
+    bottom: 0;
+    left: 10px;
+    right: 10px;
+}
+
+#socket > h3 {
+    font-size: 80%;
+    margin-top: 0;
+}
+
+#socket:hover > h3 {
+    font-size: 100%;
+}
+
+#socket > .channel-container {
+    display: none;
+}
+
+#socket:hover > .channel-container {
+    display: block;
+    height: 40%;
+}
+
+#socket > .channel-container > h4 {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+#xmpp-incoming, #xmpp-outgoing {
+    font-weight: normal;
+    overflow: auto;
+}
+
+#socket {
+    display: none;
+}
+
+
+/* UTILITIES */
+
+#blueprints {
+    display: none;
+}
+
+
+
+
+
+
+
+
+
+
+/* POPUPS */
+
+.sidestrip {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 16px;
+    height: 100%;
+    background: #eef;
+}
+
+
+/* POPUP */
+
+.popup {
+    position: absolute;
+    z-index: 1000;
+    top: 5%;
+    right: 0;
+    max-height: 50%;
+    background-color: transparent;
+    -moz-border-radius-topright: 12px;
+    -moz-border-radius-bottomright: 12px;
+    opacity: 0.95;
+}
+
+.popup * {
+    margin: 0;
+    padding: 0;
+}
+
+.popup .content {
+    padding: 4px;
+}
+
+.popup .content {
+    font-size: smaller;
+    width: 150px;
+    overflow-x: hidden;
+    -moz-border-radius-topright: 4px;
+    -moz-border-radius-bottomright: 4px;
+}
+
+.popup .toggle {
+    position: absolute;
+    top: 8px;
+    left: -16px;
+    width: 16px;
+    color: black;
+    font-size: larger;
+    font-weight: bold;
+    cursor: pointer;
+    -moz-border-radius-topleft: 12px;
+    -moz-border-radius-bottomleft: 12px;
+    height: 40px;
+}
+
+.popup .content,
+.popup .toggle {
+    background-color: #CFDCE6;
+}
+
+.popup .toggle:after {
+    content: "«"
+}
+
+.popup.visible .toggle:after {
+    content: "»"
+}
+
+.popup .toggle:hover {
+    color: blue;
+}
+
+.popup + .popup .toggle {
+    margin-top: 40px;
+}
+
+
+/* INFO POPUP */
+
+.popup .content.info .header {
+    margin-top: 6px;
+    margin-bottom: 3px;
+    font-weight: bold;
+}
+
+.popup .content.info ul.resources {
+    list-style-type: none;
+    overflow: auto;
+}
+
+.popup .content.info ul.resources li:before {
+    content: "» "
+}
+
+/* SMILEY POPUP */
+
+.popup .content.smileys ul li {
+    display: inline;
+}

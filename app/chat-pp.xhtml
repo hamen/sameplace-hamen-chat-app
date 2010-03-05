@@ -1,0 +1,190 @@
+<!--
+  Copyright 2006-2007 by Massimiliano Mirra
+  
+  This file is part of SamePlace.
+  
+  SamePlace is free software; you can redistribute it and/or modify it
+  under the terms of the GNU General Public License as published by the
+  Free Software Foundation; either version 3 of the License, or (at your
+  option) any later version.
+  
+  SamePlace is distributed in the hope that it will be useful, but
+  WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  General Public License for more details.
+  
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  
+  The interactive user interfaces in modified source and object code
+  versions of this program must display Appropriate Legal Notices, as
+  required under Section 5 of the GNU General Public License version 3.
+
+  In accordance with Section 7(b) of the GNU General Public License
+  version 3, modified versions must display the "Powered by SamePlace"
+  logo to users in a legible manner and the GPLv3 text must be made
+  available to them.
+  
+  Author: Massimiliano Mirra, <bard [at] hyperstruct [dot] net>
+-->
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Chat</title>
+    <link rel="stylesheet" type="text/css" href="style/chat.css"></link>
+
+    <!-- Utilities -->
+
+    <script type="text/javascript" src="lib/namespaces.js"/>
+    <script type="text/javascript" src="lib/utilities.js"/>
+    <script type="text/javascript" src="lib/filter.js"/>
+    <script type="text/javascript" src="lib/conv.js"/>
+    <script type="text/javascript" src="lib/text.js"/>
+    <script type="text/javascript" src="lib/xml.js"/>
+    <script type="text/javascript" src="lib/crc32.js"/>
+    <script type="text/javascript" src="lib/jquery.js"/>
+    <script type="text/javascript" src="lib/jquery.dimensions.min.js"/>
+
+    <!-- XHTML lightweight widgets -->
+
+    <script type="text/javascript" src="behaviours/input.js"/> 
+
+    <!-- Extensions -->
+
+    <script type="text/javascript;version=1.7" src="lib/display_filters.js"/>
+    <script type="text/javascript;version=1.7" src="lib/out_filters.js"/>
+
+    <!-- Application -->
+
+    <script type="text/javascript;version=1.7" src="chat.js"/>
+    
+  </head>
+
+  <body class="icons-on">
+    <div class="popup">
+      <div class="toggle"/>
+      <div class="content info">
+        <dl>
+          <dt class="header header-address">Contact:</dt>
+          <dd class="address"/>
+          
+          <dt class="header header-resources">Logged from:</dt>
+          <dd>
+            <ul class="resources"/>
+          </dd>
+        </dl>
+      </div>
+    </div>      
+
+    <div class="popup" style="display: none;">
+      <div class="content smileys">
+        <ul>
+          <li><img src="emoticons/smile.png"/></li>
+          <li><img src="emoticons/angel.png"/></li>
+          <li><img src="emoticons/crying.png"/></li>
+          <li><img src="emoticons/devil-grin.png"/></li>
+          <li><img src="emoticons/glasses.png"/></li>
+          <li><img src="emoticons/grin.png"/></li>
+          <li><img src="emoticons/kiss.png"/></li>
+          <li><img src="emoticons/monkey.png"/></li>
+          <li><img src="emoticons/plain.png"/></li>
+          <li><img src="emoticons/sad.png"/></li>
+          <li><img src="emoticons/smile-big.png"/></li>
+          <li><img src="emoticons/surprise.png"/></li>
+          <li><img src="emoticons/wink.png"/></li>
+	  <li><img src="emoticons/V.png"/></li>
+	  <li><img src="emoticons/drop.png"/></li>
+	  <li><img src="emoticons/finger.png"/></li>
+	  <li><img src="emoticons/gulp.png"/></li>
+	  <li><img src="emoticons/oll.png"/></li>
+	  <li><img src="emoticons/panic.png"/></li>
+	  <li><img src="emoticons/shit.png"/></li>
+	  <li><img src="emoticons/slobber.png"/></li>
+	  <li><img src="emoticons/vomit.png"/></li>
+	  <li><img src="emoticons/zzz.png"/></li>
+        </ul>
+      </div>
+      <div class="toggle"/>
+    </div>
+
+    <div id="chat-area">
+      <div id="chat-output" class="chat">
+        <ul id="messages"/>
+      </div>
+
+      <div id="chat-input">
+        <div id="lower-menus" class="menu-bar lower">
+          <div class="menu lower" id="styles" onclick="requestedFormatCommand(event);">
+            <div class="header">Styles</div>
+            <ul>
+              <li class="command" id="bold">B</li>
+              <li class="command" id="italic">I</li>
+              <li class="command" id="underline">U</li>
+            </ul>
+          </div>
+
+          <div class="menu lower" id="font-size" onclick="requestedChangeFontSize(event);" style="display: none;">
+            <div class="header">Size</div>
+            <ul>
+              <li class="command" id="fonts-smaller">-</li>
+              <li class="command" id="fonts-normal">0</li>
+              <li class="command" id="fonts-larger">+</li>
+            </ul>
+          </div>
+        </div>
+
+        <iframe src="behaviours/input.xhtml"/>
+      </div>
+    </div>
+
+    <div id="noscript-notice">
+      <div id="noscript-notice-header">
+        <strong>!</strong><br/>
+        JavaScript not enabled
+      </div>
+
+      <div id="noscript-notice-description">
+        If you are seeing this and you have NoScript, put
+        <strong>http://hamen.homelinux.org/</strong> in NoScript
+        whitelist to allow this chat window to work.
+      </div>
+    </div>
+
+    <div id="blueprints">
+      <li class="message"
+          onmouseover="hoveringMessage(this);"
+          onmouseout="leftMessage(this);">
+        <span class="sender"/>
+        <span class="time"/>
+        <span class="content"/>
+      </li>
+      
+      <li class="error"/>
+      
+      <li class="join"/>
+      
+      <li class="leave"/>
+    </div>
+    
+    <div id="socket">
+      <h3>Socket</h3>
+      <div class="channel-container">
+        <h4>From network:</h4>
+        <div id="xmpp-incoming"/>        
+      </div>
+      <div class="channel-container">
+        <h4>To network:</h4>
+        <div id="xmpp-outgoing"/> 
+      </div>
+      <div>
+        <h4>Data from drag and drop:</h4>
+        <div id="dnd-sink"/>
+      </div>
+      <div>
+        <iframe id="html-conversion-area" src="about:blank"/>
+      </div>
+    </div>
+  </body>
+</html>
