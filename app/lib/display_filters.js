@@ -134,6 +134,7 @@ function processEmoticons(xmlMessageBody) {
         ':P':   'tongue',
         ':-P':   'tongue',
         '<3':	 'heart',
+        '(angry)':	 'angry',
         '(finger)':	 'finger',
         '(fuck)':	 'finger',
 	'(v)':	 'V',
