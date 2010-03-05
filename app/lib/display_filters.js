@@ -131,6 +131,8 @@ function processEmoticons(xmlMessageBody) {
         ':O':    'surprise',
         ';)':    'wink',
         ';-)':   'wink',
+        ':P':   'tongue',
+        ':-P':   'tongue',
         '<3':	 'heart',
         '(finger)':	 'finger',
         '(fuck)':	 'finger',
