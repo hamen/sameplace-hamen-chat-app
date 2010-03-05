@@ -140,6 +140,8 @@ function processEmoticons(xmlMessageBody) {
         '(blush)':	 'blush',
         '(bored)':	 'bored',
         ':-0':	 'bored',
+        '(clown)':	 'clown',
+        ':o)':	 'clown',
         '(finger)':	 'finger',
         '(fuck)':	 'finger',
 	'(v)':	 'V',
