@@ -157,13 +157,11 @@ function processEmoticons(xmlMessageBody) {
         'LOL':	 'laugh',
         '(luv)':	 'luv',
 	'(v)':	 'V',
-	'(gulp)':	 'gulp',
 	'(panic)':	 'panic',
-	'(shit)':	 'shit',
 	'(slobber)':	 'slobber',
+	'(veryangry)':	 'veryangry',
 	'(vomit)':	 'vomit',
 	'(zzz)':	 'zzz',
-	'(oll)':	 'oll',
         'B-)':   'cool',
         'B)':    'cool'
    };
