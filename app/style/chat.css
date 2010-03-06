@@ -432,6 +432,7 @@ body.icons-on .smiley-heart      { background: url(../emoticons/heart.png); }
 body.icons-on .smiley-hmm        { background: url(../emoticons/hmm.png); }
 body.icons-on .smiley-kiss       { background: url(../emoticons/kiss.png); }
 body.icons-on .smiley-laugh      { background: url(../emoticons/laugh.png); }
+body.icons-on .smiley-luv        { background: url(../emoticons/luv.png); }
 body.icons-on .smiley-monkey     { background: url(../emoticons/monkey.png); }
 body.icons-on .smiley-plain      { background: url(../emoticons/plain.png); }
 body.icons-on .smiley-sad        { background: url(../emoticons/sad.png); }
@@ -449,7 +450,6 @@ body.icons-on .smiley-panic      { background: url(../emoticons/panic.png); back
 body.icons-on .smiley-shit       { background: url(../emoticons/shit.png); background-repeat:no-repeat; background-position:bottom left; }
 body.icons-on .smiley-vomit      { background: url(../emoticons/vomit.png); background-repeat:no-repeat; background-position:bottom left; }
 body.icons-on .smiley-zzz        { background: url(../emoticons/zzz.png); background-repeat:no-repeat; background-position:bottom left; }
-body.icons-on .smiley-tongue     { background: url(../emoticons/tongue.png); background-repeat:no-repeat; background-position:bottom left;}
 
 /* SOCKET */
 

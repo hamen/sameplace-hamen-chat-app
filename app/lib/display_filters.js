@@ -155,6 +155,7 @@ function processEmoticons(xmlMessageBody) {
         '(laugh)':	 'laugh',
         'lol':	 'laugh',
         'LOL':	 'laugh',
+        '(luv)':	 'luv',
 	'(v)':	 'V',
 	'(gulp)':	 'gulp',
 	'(panic)':	 'panic',
