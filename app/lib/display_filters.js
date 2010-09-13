@@ -167,7 +167,9 @@ function processEmoticons(xmlMessageBody) {
 	'(vomit)':	 'vomit',
 	'(zzz)':	 'zzz',
         'B-)':   'cool',
-        'B)':    'cool'
+        'B)':    'cool',
+        'http://':	 '',
+        'https://':	 ''
    };
     _.regexp = _.regexp || makeMatcher(getKeys(_.emoticons));
 
@@ -177,7 +179,14 @@ function processEmoticons(xmlMessageBody) {
             function(emoticonSymbol) {
                 var url = 'emoticons/' + _.emoticons[emoticonSymbol] + '.png';
                 var cls = "smiley smiley-" + _.emoticons[emoticonSymbol];
-                return <span class={cls} alt={emoticonSymbol} title={emoticonSymbol}></span>;
+		switch(emoticonSymbol) {
+		case 'http://':
+		    return <span>http://</span>;
+		case 'https://':		    
+		    return <span>https://</span>;
+		default:
+                    return <span class={cls} alt={emoticonSymbol} title={emoticonSymbol}></span>;
+		}
             });
     });
 }
